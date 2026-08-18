@@ -305,38 +305,272 @@
     padding:5px 8px; color:var(--ink-soft);
   }
 
-  @media (max-width: 860px){
-    .nav-links{ display:none;}
-    .hero-inner{ grid-template-columns:1fr;}
-    .hero-visual{ order:-1;}
-    .grid{ grid-template-columns:repeat(2,1fr); gap:16px;}
-    .micro-inner{ grid-template-columns:1fr; padding:36px 22px;}
-    .feature-grid{ grid-template-columns:1fr;}
-    .feature-img{ min-height:280px;}
-    .feature-copy{ padding:36px 24px;}
-    .footer-grid{ grid-template-columns:1fr 1fr;}
+/* ==========================================================================
+   MOBILE — Responsive Design (element by element)
+   ========================================================================== */
+
+/* ---- 860px: Tablet & small screens ---- */
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+
+  /* Hero */
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { order: -1; }
+
+  /* Product Grid: 2 columns on tablet */
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  /* Buy box */
+  .micro-inner { grid-template-columns: 1fr; padding: 40px 28px; }
+  .micro-visual { order: -1; margin-bottom: 8px; }
+  .micro-visual .ring { max-width: 280px; margin: 0 auto; padding: 24px; }
+
+  /* Feature strip */
+  .feature-grid { grid-template-columns: 1fr; }
+  .feature-img { min-height: 260px; }
+  .feature-copy { padding: 36px 28px; }
+
+  /* Footer */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+/* ---- 600px: Mobile ---- */
+@media (max-width: 600px) {
+
+  /* --- Global --- */
+  .wrap { padding: 0 18px; }
+
+  /* --- Top bar --- */
+  .topbar {
+    font-size: 10px;
+    padding: 8px 12px;
+    letter-spacing: 0.04em;
+    line-height: 1.45;
   }
 
-  @media (max-width: 768px){
-    .hero-banner-full picture, .hero-banner-full img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-    }
-    .buy-actions { flex-direction: column; align-items: stretch; gap: 12px; }
-    .buy-now-btn { max-width: 100%; width: 100%; text-align: center; justify-content: center; }
-    .quantity-selector { width: 100%; justify-content: center; }
-    .newsletter-band { margin: 40px 16px; padding: 40px 20px; border-radius: 24px; }
-    .news-form input { min-width: 100%; }
-    .news-form button { width: 100%; justify-content: center; }
+  /* --- Header / Nav --- */
+  header {
+    background: rgba(255, 253, 248, 0.96);
+  }
+  .nav {
+    padding: 12px 0;
+    gap: 12px;
+  }
+  .logo-mark img { height: 28px; }
+  .nav-icons { gap: 14px; }
+  .icon-btn { width: 18px; height: 18px; }
+
+  /* --- Hero Banner --- */
+  .hero { margin: 0; }
+  .hero-banner-full {
+    border-radius: 0;
+  }
+  .hero-banner-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
   }
 
-  @media (max-width: 480px){
-    .grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; gap: 24px; }
-    .footer-bottom { flex-direction: column; text-align: center; }
+  /* --- Category Chips --- */
+  .chips-section { padding: 22px 0 6px; }
+  .chips {
+    gap: 8px;
+    padding: 0 18px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 8px;
   }
+  .chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex-shrink: 0;
+    padding: 9px 16px;
+    font-size: 12.5px;
+    white-space: nowrap;
+  }
+
+  /* --- Wave Divider --- */
+  .wave-divider { height: 36px; }
+
+  /* --- Products Section --- */
+  .section { padding: 40px 0; }
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .section-head h2 { font-size: 26px; }
+  .section-head p { font-size: 13.5px; max-width: 100%; }
+
+  /* --- Product Grid: 2 columns on mobile --- */
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .card {
+    padding: 14px 14px 16px;
+    border-radius: 16px;
+  }
+  .card .thumb {
+    height: 130px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+  .card h3 { font-size: 13px; margin: 4px 0 8px; }
+  .card .price { font-size: 15px; }
+  .card .old-price { font-size: 11.5px; }
+  .card .tag {
+    top: 10px;
+    left: 10px;
+    font-size: 9.5px;
+    padding: 3px 8px;
+  }
+
+  /* --- Microbioma Buy Box --- */
+  .section-microbioma { padding-top: 0; }
+  .micro-band {
+    border-radius: 24px;
+    margin: 0 10px;
+  }
+  .micro-inner {
+    grid-template-columns: 1fr;
+    padding: 28px 22px 32px;
+    gap: 24px;
+  }
+  .micro-visual { order: -1; }
+  .micro-visual .ring {
+    max-width: 220px;
+    margin: 0 auto;
+    padding: 18px;
+  }
+  .micro-copy h2.product-title {
+    font-size: 22px;
+    margin: 6px 0 12px;
+  }
+  .product-rating { gap: 6px; }
+  .product-rating .stars { font-size: 12px; }
+  .product-rating .rating-text { font-size: 11px; }
+  .price-box {
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .price-box .current-price { font-size: 24px; }
+  .price-box .original-price { font-size: 14px; }
+  .price-box .discount-badge { font-size: 10px; padding: 3px 8px; }
+
+  /* Buy actions stacked */
+  .buy-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .quantity-selector {
+    width: 100%;
+    justify-content: center;
+    padding: 6px 12px;
+  }
+  .qty-btn { width: 36px; height: 36px; font-size: 20px; }
+  .qty-number { font-size: 15px; min-width: 30px; }
+  .buy-now-btn {
+    max-width: 100%;
+    width: 100%;
+    justify-content: center;
+    padding: 16px 24px;
+    font-size: 15px;
+  }
+
+  /* Accordion */
+  .accordion-header { padding: 14px 0; font-size: 14px; }
+  .accordion-icon { font-size: 16px; }
+  .accordion-content p { font-size: 13px; }
+
+  /* --- Feature Strip --- */
+  .feature-strip { padding: 0 0 40px; }
+  .feature-grid {
+    grid-template-columns: 1fr;
+    border-radius: 20px;
+    margin: 0 10px;
+  }
+  .feature-img { min-height: 220px; }
+  .feature-copy {
+    padding: 28px 22px;
+  }
+  .feature-copy h2 { font-size: 22px; margin-bottom: 12px; }
+  .feature-copy p { font-size: 14px; margin-bottom: 20px; }
+  .ingredient-row { gap: 8px; margin-bottom: 22px; }
+  .ingredient-pill { font-size: 10px; padding: 6px 11px; }
+
+  /* --- Marquee --- */
+  .marquee-wrap { padding: 18px 0; }
+  .marquee span { font-size: 16px; gap: 10px; }
+  .marquee { gap: 36px; }
+
+  /* --- Newsletter --- */
+  .newsletter-band {
+    margin: 30px 10px;
+    padding: 36px 20px;
+    border-radius: 22px;
+  }
+  .newsletter-band h2 { font-size: 24px; margin-bottom: 10px; }
+  .newsletter-band p { font-size: 14px; margin-bottom: 22px; }
+  .news-form {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .news-form input {
+    min-width: unset;
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 14px;
+    border-radius: 100px;
+  }
+  .news-form button {
+    width: 100%;
+    justify-content: center;
+    border: none;
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+
+  /* --- Footer --- */
+  footer { padding: 40px 0 24px; }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-bottom: 32px;
+  }
+  .footer-brand .logo-mark { margin-bottom: 12px; }
+  .footer-brand .logo-mark img { height: 26px; }
+  .footer-brand p { font-size: 13px; max-width: 100%; margin-bottom: 14px; }
+  .footer-col h4 { font-size: 10px; margin-bottom: 12px; }
+  .footer-col ul { gap: 8px; font-size: 13.5px; }
+  .social-row a { width: 36px; height: 36px; font-size: 12px; }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 20px;
+    text-align: center;
+  }
+  .footer-bottom p { font-size: 11px; }
+  .pay-icons {
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .pay-icons span { font-size: 9px; padding: 4px 7px; }
+}
+
+/* ---- 380px: Very small phones ---- */
+@media (max-width: 380px) {
+  .grid { grid-template-columns: 1fr; }
+  .card .thumb { height: 160px; }
+  .card h3 { font-size: 14px; }
+  .section-head h2 { font-size: 23px; }
+  .newsletter-band h2 { font-size: 21px; }
+}
 
 /* ---------- ADDITIONAL CLEANUP STYLES ---------- */
 .section-microbioma {
@@ -355,3 +589,4 @@
 .footer-col ul.footer-address {
   color: var(--ink-soft);
 }
+
