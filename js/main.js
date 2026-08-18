@@ -88,4 +88,58 @@ document.addEventListener('DOMContentLoaded', () => {
       alert(`Adicionado ao carrinho! (${qty}x Lavaê — Sabonete Facial em Espuma)`);
     });
   }
+
+  // ---------- CUSTOM INTERACTIVE CURSOR FOLLOWER ----------
+  if (window.matchMedia('(pointer: fine)').matches) {
+    const dot = document.createElement('div');
+    const ring = document.createElement('div');
+    dot.className = 'custom-cursor-dot';
+    ring.className = 'custom-cursor-ring';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+
+    let mouseX = -100, mouseY = -100;
+    let ringX = -100, ringY = -100;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+    });
+
+    const renderCursor = () => {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+      requestAnimationFrame(renderCursor);
+    };
+    requestAnimationFrame(renderCursor);
+
+    // Hover state on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .card, .chip, .accordion-header, .qty-btn, input');
+    interactiveElements.forEach((el) => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+  }
+
+  // ---------- SCROLL REVEAL OBSERVER ----------
+  const revealElements = document.querySelectorAll('.reveal');
+  if (revealElements.length > 0 && 'IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    revealElements.forEach((el) => revealObserver.observe(el));
+  } else {
+    revealElements.forEach((el) => el.classList.add('visible'));
+  }
 });
