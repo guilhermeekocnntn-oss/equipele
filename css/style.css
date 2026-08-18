@@ -114,10 +114,11 @@
   }
   .topbar{
     text-align:center; font-family:'Space Mono',monospace; font-size:11px;
-    letter-spacing:.08em; padding:7px 0; color:var(--ink);
-    background: linear-gradient(90deg, var(--lime), var(--pink) 120%);
+    letter-spacing:.08em; padding:8px 16px; color:var(--ink);
+    background: #FFF0F6;
+    border-bottom: 1.5px solid #FBBFD9;
   }
-  .nav{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; gap:24px;}
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; gap:24px;}
   .logo-mark{ display:flex; align-items:center; gap:10px;}
   .logo-mark img{ height:34px; width:auto;}
   .nav-links{ display:flex; gap:30px; font-size:14px; font-weight:500;}
@@ -353,7 +354,7 @@
     background: rgba(255, 253, 248, 0.96);
   }
   .nav {
-    padding: 12px 0;
+    padding: 12px 18px;
     gap: 12px;
   }
   .logo-mark img { height: 28px; }
