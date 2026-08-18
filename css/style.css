@@ -49,32 +49,34 @@
   .btn-line:hover{ background:var(--ink); color:var(--cream); transform:translateY(-2px); box-shadow:0 10px 24px -8px rgba(35,34,42,.2);}
   .btn:active{ transform:scale(0.97)!important;}
 
-  /* ---------- STYLED CUSTOM CURSOR ---------- */
+  /* ---------- STYLED CLASSIC ARROW CURSOR ---------- */
   @media (pointer: fine) {
-    body, a, button, input, .card, .chip, .accordion-header {
+    body, a, button, input, select, textarea, .card, .chip, .accordion-header, .qty-btn {
       cursor: none !important;
     }
     .styled-cursor {
-      width: 18px;
-      height: 18px;
-      background: linear-gradient(135deg, var(--lime) 0%, var(--pink-deep) 100%);
-      border-radius: 50% 50% 50% 2px;
+      width: 24px;
+      height: 24px;
       position: fixed;
       top: 0;
       left: 0;
       pointer-events: none;
       z-index: 99999;
-      box-shadow: 0 4px 14px rgba(232, 90, 148, 0.45), 0 0 0 2px rgba(255, 255, 255, 0.8);
-      transform: translate(-30%, -30%) rotate(-45deg);
-      transition: transform .18s cubic-bezier(0.16, 1, 0.3, 1), background .2s ease, width .2s ease, height .2s ease;
+      filter: drop-shadow(0 3px 6px rgba(35, 34, 42, 0.35));
+      transform: translate(0, 0);
+      transition: transform .18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .styled-cursor svg {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
     body.cursor-hover .styled-cursor {
-      transform: translate(-30%, -30%) rotate(0deg) scale(1.45);
-      background: linear-gradient(135deg, var(--pink) 0%, var(--lime) 100%);
-      box-shadow: 0 6px 20px rgba(203, 229, 70, 0.6), 0 0 0 2px var(--paper);
+      transform: scale(1.28);
+      filter: drop-shadow(0 4px 10px rgba(232, 90, 148, 0.55));
     }
     body.cursor-click .styled-cursor {
-      transform: translate(-30%, -30%) rotate(-45deg) scale(0.85);
+      transform: scale(0.88);
     }
   }
 

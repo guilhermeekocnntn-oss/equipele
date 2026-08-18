@@ -108,10 +108,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ---------- STYLED CUSTOM POINTER CURSOR & HOVER ----------
+  // ---------- STYLED CLASSIC ARROW POINTER CURSOR & HOVER ----------
   if (window.matchMedia('(pointer: fine)').matches) {
     const cursor = document.createElement('div');
     cursor.className = 'styled-cursor';
+    cursor.innerHTML = `
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cursorGrad" x1="0" y1="0" x2="20" y2="20" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#CBE546" />
+            <stop offset="100%" stop-color="#e85a94" />
+          </linearGradient>
+        </defs>
+        <path d="M4 2L18 11L11.5 13.2L16 20L13.2 21.5L8.7 14.7L4 18V2Z" fill="url(#cursorGrad)" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
+    `;
     document.body.appendChild(cursor);
 
     window.addEventListener('mousemove', (e) => {
