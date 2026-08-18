@@ -49,24 +49,32 @@
   .btn-line:hover{ background:var(--ink); color:var(--cream); transform:translateY(-2px); box-shadow:0 10px 24px -8px rgba(35,34,42,.2);}
   .btn:active{ transform:scale(0.97)!important;}
 
-  /* ---------- CUSTOM CURSOR ---------- */
+  /* ---------- STYLED CUSTOM CURSOR ---------- */
   @media (pointer: fine) {
-    .custom-cursor-dot{
-      width:8px; height:8px; background:var(--pink-deep); border-radius:50%;
-      position:fixed; top:0; left:0; pointer-events:none; z-index:9999;
-      transform:translate(-50%, -50%); transition:transform .08s ease-out, opacity .2s ease;
+    body, a, button, input, .card, .chip, .accordion-header {
+      cursor: none !important;
     }
-    .custom-cursor-ring{
-      width:36px; height:36px; border:1.5px solid var(--pink-deep);
-      background:rgba(253,134,180,0.08); border-radius:50%;
-      position:fixed; top:0; left:0; pointer-events:none; z-index:9998;
-      transform:translate(-50%, -50%); transition:width .25s ease, height .25s ease, background .25s ease, border-color .25s ease;
+    .styled-cursor {
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, var(--lime) 0%, var(--pink-deep) 100%);
+      border-radius: 50% 50% 50% 2px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 99999;
+      box-shadow: 0 4px 14px rgba(232, 90, 148, 0.45), 0 0 0 2px rgba(255, 255, 255, 0.8);
+      transform: translate(-30%, -30%) rotate(-45deg);
+      transition: transform .18s cubic-bezier(0.16, 1, 0.3, 1), background .2s ease, width .2s ease, height .2s ease;
     }
-    body.cursor-hover .custom-cursor-ring{
-      width:56px; height:56px; background:rgba(203,229,70,0.3); border-color:var(--lime-deep);
+    body.cursor-hover .styled-cursor {
+      transform: translate(-30%, -30%) rotate(0deg) scale(1.45);
+      background: linear-gradient(135deg, var(--pink) 0%, var(--lime) 100%);
+      box-shadow: 0 6px 20px rgba(203, 229, 70, 0.6), 0 0 0 2px var(--paper);
     }
-    body.cursor-hover .custom-cursor-dot{
-      transform:translate(-50%, -50%) scale(1.4); background:var(--ink);
+    body.cursor-click .styled-cursor {
+      transform: translate(-30%, -30%) rotate(-45deg) scale(0.85);
     }
   }
 
