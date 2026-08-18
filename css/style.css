@@ -235,13 +235,25 @@
   
   .micro-visual{ position:relative; }
   .micro-visual .ring{
-    width:100%; aspect-ratio:1/1; border-radius:50%;
-    border:1.5px dashed var(--lime-deep); display:flex; align-items:center; justify-content:center; padding:36px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 1.5px dashed var(--lime-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 36px;
+    box-sizing: border-box;
   }
   .micro-visual .ring-inner{
-    width:100%; height:100%; border-radius:50%; overflow:hidden; border:6px solid var(--paper);
-    box-shadow:0 30px 60px -20px rgba(203,229,70,.5);
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid var(--paper);
+    box-shadow: 0 30px 60px -20px rgba(203,229,70,.5);
     transition: transform .4s ease;
+    flex-shrink: 0;
   }
   .micro-visual:hover .ring-inner{ transform:scale(1.02); }
   .micro-visual .ring-inner img{ width:100%; height:100%; object-fit:cover; object-position:60% 40%;}
@@ -440,9 +452,12 @@
   }
   .micro-visual { order: -1; }
   .micro-visual .ring {
-    max-width: 220px;
+    width: 200px;
+    height: 200px;
+    max-width: 200px;
     margin: 0 auto;
-    padding: 18px;
+    padding: 16px;
+    flex-shrink: 0;
   }
   .micro-copy h2.product-title {
     font-size: 22px;
