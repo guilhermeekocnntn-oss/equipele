@@ -146,9 +146,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.createElement('canvas');
     canvas.id = 'foam-spray-canvas';
     canvas.style.position = 'fixed';
-    canvas.style.inset = '0';
-    canvas.style.width = '100vw';
-    canvas.style.height = '100vh';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
     canvas.style.pointerEvents = 'none';
     canvas.style.zIndex = '99990';
     document.body.appendChild(canvas);
@@ -164,28 +165,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const particles = [];
     const colors = [
-      'rgba(203, 229, 70, ',   # Lime
-      'rgba(253, 134, 180, ',  # Pink
-      'rgba(232, 90, 148, ',   # Deep Pink
-      'rgba(255, 253, 248, '   # Creamy Foam White
+      'rgba(203, 229, 70, ',   // Lime
+      'rgba(253, 134, 180, ',  // Pink
+      'rgba(232, 90, 148, ',   // Deep Pink
+      'rgba(255, 253, 248, '   // Creamy Foam White
     ];
 
     class FoamParticle {
       constructor(x, y, isBurst = false) {
-        this.x = x + (Math.random() - 0.5) * (isBurst ? 30 : 12);
-        this.y = y + (Math.random() - 0.5) * (isBurst ? 30 : 12);
-        this.radius = isBurst ? Math.random() * 12 + 6 : Math.random() * 8 + 3;
+        this.x = x + (Math.random() - 0.5) * (isBurst ? 36 : 14);
+        this.y = y + (Math.random() - 0.5) * (isBurst ? 36 : 14);
+        this.radius = isBurst ? Math.random() * 14 + 6 : Math.random() * 9 + 3;
         this.maxRadius = this.radius * (Math.random() * 1.5 + 1.2);
         
-        const speed = isBurst ? Math.random() * 4 + 1.5 : Math.random() * 1.5 + 0.3;
+        const speed = isBurst ? Math.random() * 4.5 + 1.5 : Math.random() * 1.6 + 0.4;
         const angle = Math.random() * Math.PI * 2;
         this.vx = Math.cos(angle) * speed;
-        this.vy = Math.sin(angle) * speed - (isBurst ? 0.5 : 0.8); # Gently float upward like foam
+        this.vy = Math.sin(angle) * speed - (isBurst ? 0.5 : 0.8); // Gently float upward like foam
         
         this.life = 1.0;
         this.decay = Math.random() * 0.025 + 0.015;
         this.colorPrefix = colors[Math.floor(Math.random() * colors.length)];
-        this.isRing = Math.random() > 0.4;
+        this.isRing = Math.random() > 0.35;
       }
 
       update() {
@@ -206,8 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
           this.x, this.y, 0,
           this.x, this.y, this.radius
         );
-        gradient.addColorStop(0, `${this.colorPrefix}0.85)`);
-        gradient.addColorStop(0.6, `${this.colorPrefix}0.4)`);
+        gradient.addColorStop(0, `${this.colorPrefix}0.9)`);
+        gradient.addColorStop(0.6, `${this.colorPrefix}0.45)`);
         gradient.addColorStop(1, `${this.colorPrefix}0)`);
 
         context.beginPath();
@@ -218,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (this.isRing) {
           context.beginPath();
           context.arc(this.x, this.y, this.radius * 0.85, 0, Math.PI * 2);
-          context.strokeStyle = `${this.colorPrefix}0.6)`;
+          context.strokeStyle = `${this.colorPrefix}0.65)`;
           context.lineWidth = 1.2;
           context.stroke();
         }
@@ -231,8 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('mousemove', (e) => {
       const dist = Math.hypot(e.clientX - lastMouseX, e.clientY - lastMouseY);
-      if (dist > 6) {
-        const count = Math.min(4, Math.floor(dist / 6));
+      if (dist > 5) {
+        const count = Math.min(4, Math.floor(dist / 5));
         for (let i = 0; i < count; i++) {
           particles.push(new FoamParticle(e.clientX, e.clientY));
         }
@@ -242,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('click', (e) => {
-      for (let i = 0; i < 18; i++) {
+      for (let i = 0; i < 20; i++) {
         particles.push(new FoamParticle(e.clientX, e.clientY, true));
       }
     });
@@ -267,21 +268,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---------- STAGGERED SCROLL REVEAL OBSERVER ----------
   const revealElements = document.querySelectorAll('.reveal');
-  if (revealElements.length > 0 && 'IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
+  if (revealElements.length > 0) {
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.05 }
+      );
 
-    revealElements.forEach((el) => revealObserver.observe(el));
-  } else {
-    revealElements.forEach((el) => el.classList.add('visible'));
+      revealElements.forEach((el) => revealObserver.observe(el));
+    } else {
+      revealElements.forEach((el) => el.classList.add('visible'));
+    }
   }
+
+  // Fallback trigger after 500ms to guarantee visibility of all elements
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+  }, 500);
 });
